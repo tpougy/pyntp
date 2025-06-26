@@ -9,8 +9,8 @@ Este pacote é um fork e uma refatoração do [ntp-time](https://pypi.org/projec
 - **Orientado a Objetos:** Configure e utilize o cliente NTP através de uma instância da classe `NTPTime`.
 - **Servidor NTP Configurável:** Especifique o servidor NTP desejado ao instanciar o cliente.
 - **Modos de Operação Flexíveis:**
-    - **Threaded (Padrão):** Sincronização automática em segundo plano a cada X segundos (configurável), garantindo que chamadas a `now()` sejam rápidas e não realizem acesso à rede no momento da chamada.
-    - **Síncrono:** Realiza a sincronização com o servidor NTP a cada chamada do método `now()`. Ideal para casos onde multithreading não é desejado ou para scripts de curta duração que necessitam do tempo mais atualizado possível no momento da consulta.
+  - **Threaded (Padrão):** Sincronização automática em segundo plano a cada X segundos (configurável), garantindo que chamadas a `now()` sejam rápidas e não realizem acesso à rede no momento da chamada.
+  - **Síncrono:** Realiza a sincronização com o servidor NTP a cada chamada do método `now()`. Ideal para casos onde multithreading não é desejado ou para scripts de curta duração que necessitam do tempo mais atualizado possível no momento da consulta.
 - **Compensação de Atraso:** Atrasos de comunicação com a Internet são compensados (nota: não há garantia de precisão perfeita).
 - **Suavização de Tempo:** Para evitar problemas com o "tempo andando para trás", as correções são aplicadas gradualmente ao longo de um período configurável (padrão: 10 segundos).
 - **Backoff Exponencial:** Em caso de falha na conexão, novas tentativas ocorrem com um intervalo crescente.
@@ -20,7 +20,8 @@ Este pacote é um fork e uma refatoração do [ntp-time](https://pypi.org/projec
 ```bash
 pip install pyntp-time
 ```
-*(Nota: Quando o pacote estiver disponível no PyPI. Por enquanto, instale localmente ou via Git.)*
+
+_(Nota: Quando o pacote estiver disponível no PyPI. Por enquanto, instale localmente ou via Git.)_
 
 ## Como Usar
 
@@ -92,4 +93,3 @@ Este projeto é licenciado sob a Licença MIT. Veja o arquivo `LICENSE` para mai
 ## Agradecimentos
 
 - Este projeto é um fork e uma refatoração do excelente trabalho feito no pacote [ntp-time](https://pypi.org/project/ntp-time/).
-```

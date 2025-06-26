@@ -1,0 +1,117 @@
+version = 1
+revision = 2
+requires-python = ">=3.7"
+
+[[package]]
+name = "ezpip"
+version = "0.2.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "fies" },
+    { name = "relpath" },
+    { name = "sout" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6d/e9/cea6430edeab9754bd9d94fef82d007892d2b18d1d82a54d8915718eac9a/ezpip-0.2.5-py3-none-any.whl", hash = "sha256:4db079e4a42465ff1fe0f4d0976fb05d5cf43d4ca6539dcf602cf6c5e7016ca6", size = 6710, upload-time = "2022-03-12T12:10:18.274Z" },
+]
+
+[[package]]
+name = "fies"
+version = "1.6.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ezpip" },
+    { name = "relpath" },
+    { name = "sout" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e0/84/fc9b5db6823d7780a9b32cc00773a7619311884ef957734bfff2e894e857/fies-1.6.0.tar.gz", hash = "sha256:466b6597ba37d2e42e53835300acb5c526047cec5dd6280e8c26fda55e2088d4", size = 5385, upload-time = "2025-06-12T05:49:12.678Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/56/93/a451db96af1d4a67756dadb909eabe0eb2f2b88849172e4d3daef2817090/fies-1.6.0-py3-none-any.whl", hash = "sha256:575f08234b08adf5cf7e87fbb8afed0f318eea2c3b2c47ccda091e598b0ce2cc", size = 6009, upload-time = "2025-06-12T05:49:10.499Z" },
+]
+
+[[package]]
+name = "iter-backoff"
+version = "0.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ezpip" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fe/7c/a487465ec13cf02ffe17cd0d36b1bec962b235812619f8f34f1487640027/iter-backoff-0.0.0.tar.gz", hash = "sha256:6de72772855d81ee17ca01dfe3d9d0f743ca1ecfa65da8c8152fed9d6ab4421d", size = 3239, upload-time = "2025-03-07T11:06:09.559Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/13/e0/f6ccd48a477e1abd566962a7c829c06e0c7cc0fa38717717513da30c90e4/iter_backoff-0.0.0-py3-none-any.whl", hash = "sha256:4e82e06c18c7fad1f13f523d7841f5210e0b3f192d81c185a53b3e490da8f0cd", size = 3566, upload-time = "2025-03-07T11:06:08.091Z" },
+]
+
+[[package]]
+name = "json-stock"
+version = "0.2.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ezpip" },
+    { name = "rename-lock" },
+    { name = "sout" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1d/84/0ea3621bc97c47f7586bb9b608c27eea5b03dd994a149b4b351cacb37b50/json-stock-0.2.6.tar.gz", hash = "sha256:1900d4a53e1ea579cc40e757a064f9edc65b6d83a67e3695a451ddaa73e038a6", size = 7293, upload-time = "2022-07-30T07:38:39.091Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/91/f9/6f40c3f736fe5ce6617e91b876ddd189e1edd097f7deb6c95af9bdf908af/json_stock-0.2.6-py3-none-any.whl", hash = "sha256:dc0a7871cdbf9ff165fb00609eb038dd74c0d106ba0534492fda562ed8b13c7c", size = 6849, upload-time = "2022-07-30T07:38:36.198Z" },
+]
+
+[[package]]
+name = "ntplib"
+version = "0.4.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/b4/14/6b018fb602602d9f6cc7485cbad7c1be3a85d25cea18c233854f05284aed/ntplib-0.4.0.tar.gz", hash = "sha256:899d8fb5f8c2555213aea95efca02934c7343df6ace9d7628a5176b176906267", size = 7135, upload-time = "2021-05-28T19:08:54.394Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/58/8c/41da70f6feaca807357206a376b6de2001b439c7f78f53473a914a6dbd1e/ntplib-0.4.0-py2.py3-none-any.whl", hash = "sha256:8d27375329ed7ff38755f7b6d4658b28edc147cadf40338a63a0da8133469d60", size = 6849, upload-time = "2021-05-28T19:08:53.323Z" },
+]
+
+[[package]]
+name = "pyntp-time"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "iter-backoff" },
+    { name = "ntplib" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "iter-backoff" },
+    { name = "ntplib", specifier = ">=0.4.0" },
+]
+
+[[package]]
+name = "relpath"
+version = "3.0.5"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/44/af/2a28cac63399783cff5c4a70157974e8f09281740ef432bca8ae78e75b85/relpath-3.0.5.tar.gz", hash = "sha256:b6d3b2752125737c24dd3cfe3f704d8e2909388bd72e225141f364b8a2b9ed9f", size = 6219, upload-time = "2020-11-28T05:23:49.689Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/96/8b/93cb74103f90ac62079f82999bb39d15d25721b0d2e7b9ee55495c130bd9/relpath-3.0.5-py3-none-any.whl", hash = "sha256:9c6cf4af63906109f85e16064dc94e538e04ebc611d903dfa5b21c44e2538319", size = 5810, upload-time = "2020-11-28T05:23:44.164Z" },
+]
+
+[[package]]
+name = "rename-lock"
+version = "0.1.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ezpip" },
+    { name = "fies" },
+    { name = "sout" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c2/03/bccf3bdf568970d4829cb800ba6041e15d5f501c23f55a5b7e1284355835/rename-lock-0.1.4.tar.gz", hash = "sha256:b511703bde859eaa676ed00c6a4f4eee86ce1bbfba17e831ecae4707d9fd13b1", size = 3854, upload-time = "2022-07-05T12:18:04.09Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/59/35/131d6a8fc181bbd3106f72439cd3c438e480e935aae6e93bc6657f78a192/rename_lock-0.1.4-py3-none-any.whl", hash = "sha256:2e93682d24d841ed79fd965ef3506219a3142d3af445dbc534b17d502bd0f05f", size = 4078, upload-time = "2022-07-05T12:18:02.267Z" },
+]
+
+[[package]]
+name = "sout"
+version = "1.2.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ezpip" },
+    { name = "json-stock" },
+    { name = "relpath" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b3/a5/4727ee0ddcae4ea573de19712f5c8538bc77f92b05fef298f629ecb889d1/sout-1.2.1.tar.gz", hash = "sha256:4f809b581eb27e0315eacec163b9f28b6e69ee03e133f429c4a9f5aba825cb0e", size = 3469, upload-time = "2022-07-02T14:02:10.914Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/03/8f/7e0e85375e3b061c0db9ce873acb57d3311fe86e214e9344757a41a050f5/sout-1.2.1-py3-none-any.whl", hash = "sha256:f31ce938d7e1727b041fba4e1b2cee376aad1eca98a271cfb540af88423006a7", size = 3635, upload-time = "2022-07-02T14:02:07.772Z" },
+]

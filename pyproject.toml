@@ -3,10 +3,10 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pyntp_time"
+name = "pyntp"
 version = "0.1.0"
 authors = [
-  { name="Placeholder Name", email="placeholder@example.com" },
+  { name="Thomaz Pougy", email="thomazpougy@gmail.com" },
 ]
 description = "Python library for accurate time from NTP servers with threaded and synchronous modes."
 readme = "README.md"
@@ -21,13 +21,13 @@ classifiers = [
     "Topic :: System :: Networking :: Time Synchronization",
 ]
 dependencies = [
-    "ntplib",
     "iter-backoff",
+    "ntplib>=0.4.0",
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/placeholder_user/pyntp_time_repo" # Substitua pelo URL real
-"Bug Tracker" = "https://github.com/placeholder_user/pyntp_time_repo/issues" # Substitua
+"Homepage" = "https://github.com/tpougy/pyntp" # Substitua pelo URL real
+"Bug Tracker" = "https://github.com/tpougy/pyntp/issues" # Substitua
 "Original Package" = "https://pypi.org/project/ntp-time/"
 
 [tool.setuptools]

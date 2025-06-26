@@ -6,16 +6,19 @@ import ntplib
 import threading
 import iter_backoff
 
+
 class NTPTime:
     DEFAULT_ADJUST_INTERVAL = 60  # Synchronization interval (seconds)
-    DEFAULT_MERGE_TIME = 10       # Time to merge into synchronized time (seconds)
+    DEFAULT_MERGE_TIME = 10  # Time to merge into synchronized time (seconds)
     DEFAULT_NTP_SERVER_URL = "pool.ntp.org"
 
-    def __init__(self,
-                 ntp_server_url: str = DEFAULT_NTP_SERVER_URL,
-                 adjust_interval: int = DEFAULT_ADJUST_INTERVAL,
-                 merge_time: int = DEFAULT_MERGE_TIME,
-                 threaded: bool = True):
+    def __init__(
+        self,
+        ntp_server_url: str = DEFAULT_NTP_SERVER_URL,
+        adjust_interval: int = DEFAULT_ADJUST_INTERVAL,
+        merge_time: int = DEFAULT_MERGE_TIME,
+        threaded: bool = True,
+    ):
         self.ntp_server_url = ntp_server_url
         self.adjust_interval = adjust_interval
         self.merge_time = merge_time
@@ -23,7 +26,9 @@ class NTPTime:
 
         self.prev_offset = 0.0
         self.new_offset = 0.0
-        self.switch_time_local = -math.inf  # Time when offset information was updated (local clock)
+        self.switch_time_local = (
+            -math.inf
+        )  # Time when offset information was updated (local clock)
 
         self.lock = threading.Lock()
         self.client = ntplib.NTPClient()
@@ -38,11 +43,13 @@ class NTPTime:
             except Exception as e:
                 # In a real scenario, this could be logged or handled with a more robust error policy.
                 # For example, allowing the user to know that the first synchronization failed.
-                print(f"[NTPTime Warning] Initial synchronization failed in non-threaded mode: {e}")
+                print(
+                    f"[NTPTime Warning] Initial synchronization failed in non-threaded mode: {e}"
+                )
 
     def _get_offset(self) -> float:
         # Exponential backoff
-        for _ in iter_backoff.iter_backoff(s0=1, r=3, n=5):
+        for _ in iter_backoff(s0=1, r=3, n=5):
             try:
                 # Perform time synchronization
                 response = self.client.request(self.ntp_server_url, version=3)
@@ -51,7 +58,9 @@ class NTPTime:
             except Exception:
                 # print(f"Error during NTP request: {e}") # For debug
                 continue
-        raise Exception(f"[NTPTime error] Exceeded exponential backoff attempts for NTP server communication with {self.ntp_server_url}")
+        raise Exception(
+            f"[NTPTime error] Exceeded exponential backoff attempts for NTP server communication with {self.ntp_server_url}"
+        )
 
     def _recv_once(self):
         # Get offset (with iter_backoff)
@@ -70,7 +79,9 @@ class NTPTime:
             except Exception as e:
                 # If server connection fails, in class mode, we don't terminate the whole program.
                 # Just log or raise a specific exception that can be handled.
-                print(f"[NTPTime error] Failed to obtain information for time synchronization during adjust_loop: {e}")
+                print(
+                    f"[NTPTime error] Failed to obtain information for time synchronization during adjust_loop: {e}"
+                )
                 # Could have thread stopping logic here or more sophisticated retry.
                 # For now, the thread continues to try after the interval.
             # Wait until the next time adjustment
@@ -78,13 +89,17 @@ class NTPTime:
 
     def _start_adjust_loop_thread(self):
         # Periodically adjust time in a separate thread
-        self.thread = threading.Thread(target=self._adjust_loop, daemon=True)  # Sub-thread also terminates when main thread terminates
+        self.thread = threading.Thread(
+            target=self._adjust_loop, daemon=True
+        )  # Sub-thread also terminates when main thread terminates
         self.thread.start()
 
     def _get_smoothed_offset(self, local_time: float) -> float:
         with self.lock:
             # Calculate offset mixing ratio
-            passed_time = local_time - self.switch_time_local  # Elapsed time since switch time
+            passed_time = (
+                local_time - self.switch_time_local
+            )  # Elapsed time since switch time
             raw_alpha = passed_time / self.merge_time if self.merge_time > 0 else 1.0
             alpha = max(0.0, min(raw_alpha, 1.0))  # Clipping
             # Correct offset
@@ -101,8 +116,12 @@ class NTPTime:
             except Exception as e:
                 # If synchronization fails, we can choose to return local time without correction
                 # or raise the exception. For now, log and use the last known offset.
-                print(f"[NTPTime Warning] Synchronization failed in non-threaded now(): {e}. Using last known offset.")
+                print(
+                    f"[NTPTime Warning] Synchronization failed in non-threaded now(): {e}. Using last known offset."
+                )
 
         # Correct time
-        fixed_time = local_time + self._get_smoothed_offset(local_time)  # Get smoothly changing offset
+        fixed_time = local_time + self._get_smoothed_offset(
+            local_time
+        )  # Get smoothly changing offset
         return fixed_time
